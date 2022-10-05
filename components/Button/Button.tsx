@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export type ButtonProps = {
@@ -26,17 +26,33 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     flex: 1,
   },
+  clicked: {
+    opacity: 0.5,
+  },
 });
 
-export const MyButton = ({ text, onPress, color, textColor }: ButtonProps) => (
-  <View style={styles.buttonContainer}>
-    <TouchableOpacity
-      style={[styles.button, !!color && { backgroundColor: color }]}
-      onPress={onPress}
-      activeOpacity={0.8}>
-      <Text style={[styles.buttonText, !!textColor && { color: textColor }]}>
-        {text}
-      </Text>
-    </TouchableOpacity>
-  </View>
-);
+export const MyButton = ({ text, onPress, color, textColor }: ButtonProps) => {
+  const [toggled, setToggled] = useState(false);
+
+  const handlePress = useCallback(() => {
+    setToggled(!toggled);
+    onPress();
+  }, [onPress, toggled]);
+
+  return (
+    <View style={styles.buttonContainer}>
+      <TouchableOpacity
+        style={[
+          styles.button,
+          !!color && { backgroundColor: color },
+          toggled && styles.clicked,
+        ]}
+        onPress={handlePress}
+        activeOpacity={0.8}>
+        <Text style={[styles.buttonText, !!textColor && { color: textColor }]}>
+          {text}
+        </Text>
+      </TouchableOpacity>
+    </View>
+  );
+};

@@ -1,0 +1,10 @@
+// tsconfig.spec.json
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "jsx": "react-native",
+    "module": "ESNext",
+    "target": "ESNext"
+  }
+}

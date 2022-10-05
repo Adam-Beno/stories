@@ -5,15 +5,17 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { MyButton } from './Button';
 
 export default {
-  title: 'components/MyButton',
+  title: 'Components/Atoms/Button',
   component: MyButton,
 } as ComponentMeta<typeof MyButton>;
 
-export const Basic: ComponentStory<typeof MyButton> = args => (
+export const Basic: ComponentStory<typeof MyButton> = (args) => (
   <MyButton {...args} />
 );
 
 Basic.args = {
   text: 'Hello World',
   color: 'purple',
+  textColor: 'white',
+  onPress: () => null,
 };
