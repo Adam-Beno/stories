@@ -2,9 +2,6 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "jsx": "react-native",
-    "module": "ESNext",
-    "target": "ESNext"
+    "jsx": "react-native", // Switching to "react" throws "SyntaxError: Cannot use import statement outside a module"
   }
 }
